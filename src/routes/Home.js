@@ -1,32 +1,57 @@
 import React, {useEffect, useState} from "react";
 import { dbService } from "fbase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc,
+    collection,
+    getFirestore,
+    onSnapshot,
+    orderBy,
+    query,
+    where, } from "firebase/firestore";
+import Nweet from "components/Nweet";
 
-const Home = () => {
+
+const Home = ({userObj}) => {
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
 
-    const getNweets = async () => {
-        const dbNweets = await getDocs(collection(dbService, "nweets"));
-        // dbNweets.forEach((document) => console.log(document.data())); //내 state에 있는 각각의 document.data()를 console.log하고 있다는 뜻
-        dbNweets.forEach((document) => {
-            const nweetObject = {
-                ...document.data(), //spread attribute
-                id: document.id,
-            }
-            setNweets((prev) => [nweetObject, ...prev]);
-        });
-    }
+    // const getNweets = async () => {
+    //     const dbNweets = await getDocs(collection(dbService, "nweets"));
+    //     // dbNweets.forEach((document) => console.log(document.data())); //내 state에 있는 각각의 document.data()를 console.log하고 있다는 뜻
+    //     dbNweets.forEach((document) => {
+    //         const nweetObject = {
+    //             ...document.data(), //spread attribute
+    //             id: document.id,
+                
+    //         }
+    //         setNweets((prev) => [nweetObject, ...prev]);
+    //     });
+    // }
+
     useEffect(() => {
-        getNweets();
+        const q = query(
+            collection(dbService, "nweets"),
+            orderBy("createdAt", "desc")
+        );
+        onSnapshot(q, (snapshot) => {
+            const nweetArr = snapshot.docs.map((document) => ({
+                id: document.id,
+                ...document.data(),
+            }));
+            setNweets(nweetArr);
+        })
     }, []);
-    console.log(nweets);
+
     const onSubmit = async (event) => {
         event.preventDefault();
-        await addDoc(collection(dbService, "nweets"), {
-            nweet,
-            createdAt: Date.now(),
-        });
+        try {
+            const docRef = await addDoc(collection(dbService, "nweets"), {
+                text: nweet,
+                createdAt: Date.now(),
+                creatorId: userObj.uid,
+            });
+        } catch (e) {
+            console.error("Error adding document:", e);
+        }
         setNweet("");
     };
 
@@ -34,6 +59,7 @@ const Home = () => {
         const { target: {value} } = event; //'event'로부터 라는 의미. 즉, event 안에 있는 target 안에 있는 value를 달라는 뜻.
         setNweet(value);
     }
+    
     return(
         <>
             <form onSubmit={onSubmit}>
@@ -41,10 +67,13 @@ const Home = () => {
                 <input type="submit" value="Nweet" />
             </form>
             <div>
-                {nweets.map(item => 
-                <div key={item.id}>
-                    <h4>{item.nweet}</h4>
-                </div>)}
+                {nweets.map((item) => (
+                    <Nweet 
+                        key={item.id} 
+                        nweetObj={item} 
+                        isOwner={item.creatorId === userObj.uid}
+                    />
+                ))}
             </div>
         </>
     );

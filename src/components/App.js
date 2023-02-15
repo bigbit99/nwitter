@@ -7,13 +7,15 @@ function App() {
   //2. 초기화 시키면 isLoggedIn이 바뀌게 한다 
   const [init, setInit] = useState(false); //초기화 상태 state값
   const [isLoggedIn, setIsLoggedIn] = useState(false); //user의 로그인 여부를 알게해줌
-  
+  const [userObj, setUserObj] = useState(null);
+
   //🔥useEffect는 처음 시작할 때, 즉 컴포넌트가 mount 될 때 실행됨
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       //onAuthStateChanged는 firebase가 가진 이벤트 리스너!
       if(user) {
         setIsLoggedIn(true);
+        setUserObj(user);
       } else {
         setIsLoggedIn(false);
       }
@@ -22,7 +24,7 @@ function App() {
   }, []);
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn}/> : "Initializing..."}
+      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing..."}
       <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
      </>
   );
