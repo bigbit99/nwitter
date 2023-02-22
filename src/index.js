@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; 
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import App from './components/App';
-import {authService} from './fbase';
+import { authService } from './fbase';
 
 console.log(authService);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App />
-);
+root.render(<App className='background' />);

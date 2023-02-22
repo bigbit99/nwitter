@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AppRouter from 'components/Router';
 import { authService } from 'fbase';
 import { updateProfile, updateCurrentUser } from '@firebase/auth';
+import './app.style.css';
 
 function App() {
   //1.firebase가 프로그램을 초기화 하길 기다리고 -> useEffect를 통해 기다릴 수 있음
@@ -37,7 +38,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className='WrapApp'>
       {init ? (
         <AppRouter
           refreshUser={refreshUser}
@@ -49,7 +50,7 @@ function App() {
         'Initializing...'
       )}
       {/* <footer>&copy; {new Date().getFullYear()} Nwitter</footer> */}
-    </>
+    </div>
   );
 }
 
