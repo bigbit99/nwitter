@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
-import AppRouter from "components/Router";
+import React, { useState, useEffect } from 'react';
+import AppRouter from 'components/Router';
 import { authService } from 'fbase';
 
 function App() {
-  //1.firebase가 프로그램을 초기화 하길 기다리고 -> useEffect를 통해 기다릴 수 있음 
-  //2. 초기화 시키면 isLoggedIn이 바뀌게 한다 
+  //1.firebase가 프로그램을 초기화 하길 기다리고 -> useEffect를 통해 기다릴 수 있음
+  //2. 초기화 시키면 isLoggedIn이 바뀌게 한다
   const [init, setInit] = useState(false); //초기화 상태 state값
   const [isLoggedIn, setIsLoggedIn] = useState(false); //user의 로그인 여부를 알게해줌
   const [userObj, setUserObj] = useState(null);
@@ -13,20 +13,24 @@ function App() {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       //onAuthStateChanged는 firebase가 가진 이벤트 리스너!
-      if(user) {
+      if (user) {
         setIsLoggedIn(true);
         setUserObj(user);
       } else {
         setIsLoggedIn(false);
       }
-      setInit(true)
+      setInit(true);
     });
   }, []);
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing..."}
-      <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
-     </>
+      {init ? (
+        <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />
+      ) : (
+        'Initializing...'
+      )}
+      {/* <footer>&copy; {new Date().getFullYear()} Nwitter</footer> */}
+    </>
   );
 }
 
