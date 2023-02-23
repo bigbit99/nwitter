@@ -7,4 +7,4 @@ import { authService } from './fbase';
 console.log(authService);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App className='background' />);
+root.render(<App />);

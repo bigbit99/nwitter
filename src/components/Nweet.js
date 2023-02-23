@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { dbService } from 'fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { deleteObject, ref } from '@firebase/storage';
+import styled from 'styled-components';
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -59,10 +60,10 @@ const Nweet = ({ nweetObj, isOwner }) => {
             <img src={nweetObj.attachmentUrl} width='50px' height='50px' />
           )}
           {isOwner && (
-            <>
+            <BtnWrap>
               <button onClick={onDeleteClick}>Delete Nweet</button>
               <button onClick={toggleEditing}>Edit Nweet</button>
-            </>
+            </BtnWrap>
           )}
         </>
       )}
@@ -71,3 +72,10 @@ const Nweet = ({ nweetObj, isOwner }) => {
 };
 
 export default Nweet;
+
+const BtnWrap = styled.div`
+  > button {
+    border: 0;
+    outline: 0;
+  }
+`;

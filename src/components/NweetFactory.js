@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadString } from '@firebase/storage';
 import { addDoc, collection } from 'firebase/firestore';
+import styled from 'styled-components';
 
 const NweetFactory = ({ userObj }) => {
   const [nweet, setNweet] = useState('');
@@ -65,7 +66,7 @@ const NweetFactory = ({ userObj }) => {
   const onClearAttachment = () => setAttachment('');
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit}>
         <input
           value={nweet}
           onChange={onChange}
@@ -81,9 +82,22 @@ const NweetFactory = ({ userObj }) => {
             <button onClick={onClearAttachment}>Clear</button>
           </div>
         )}
-      </form>
+      </Form>
     </div>
   );
 };
 
 export default NweetFactory;
+
+const Form = styled.form`
+  margin-top: 20px;
+  box-sizing: border-box;
+  > input:nth-child(1) {
+    border: 0;
+    outline: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+`;
