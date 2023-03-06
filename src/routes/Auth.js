@@ -47,14 +47,20 @@ const GoogleAuth = styled.div`
     border: 0;
     outline: 0;
     width: 100%;
-    max-width: 60px;
-    height: 60px;
+    max-width: 40px;
+    height: 40px;
     margin: 0 auto;
     border-radius: 100%;
-    background-color: #6653f5;
+    background-color: #9897ea;
+    border: 1px solid #fff;
+    position: relative;
     > img {
       width: 100%;
-      max-width: 30px;
+      max-width: 20px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 `;

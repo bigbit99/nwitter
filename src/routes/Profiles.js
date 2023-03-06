@@ -9,6 +9,7 @@ import {
   orderBy,
 } from '@firebase/firestore';
 import { updateProfile } from '@firebase/auth';
+import styled from 'styled-components';
 
 const Profiles = ({ refreshUser, userObj, newName }) => {
   const navigate = useNavigate();
@@ -52,18 +53,34 @@ const Profiles = ({ refreshUser, userObj, newName }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <ProfileForm onSubmit={onSubmit}>
         <input
           type='text'
           placeholder='Display name'
           onChange={onChange}
           value={newDisplayName}
         />
-        <input type='submit' value='Update Profle' />
-      </form>
+        <input type='submit' value='Update' />
+      </ProfileForm>
       <button onClick={onLogOutClick}>Log Out</button>
     </>
   );
 };
 
 export default Profiles;
+
+const ProfileForm = styled.form`
+  > input:nth-child(1) {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 15px;
+    outline: 0;
+    box-sizing: border-box;
+  }
+  > input:nth-child(2) {
+    outline: 0;
+    border: 1px solid #fff;
+    width: 100px;
+  }
+`;

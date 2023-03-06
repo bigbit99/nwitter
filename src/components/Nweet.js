@@ -34,48 +34,108 @@ const Nweet = ({ nweetObj, isOwner }) => {
     setNewNweet(value);
   };
   return (
-    <div>
+    <Wrap>
       {editing ? (
         <>
           {isOwner && (
             <>
-              <form onSubmit={onSubmit}>
-                <input
+              <EditForm onSubmit={onSubmit}>
+                <EditInput
                   type='text'
                   placeholder='수정할 내용을 입력해주세요'
                   value={newNweet}
                   required
                   onChange={onChange}
                 />
-                <input type='submit' value='Update Nweet' />
-              </form>
-              <button onClick={toggleEditing}>Cancel</button>
+                <EditBtn type='submit'>
+                  <img src='../../images/refresh.png' />
+                </EditBtn>
+              </EditForm>
+              <button onClick={toggleEditing}>
+                <img src='../../images/' />
+              </button>
             </>
           )}
         </>
       ) : (
-        <>
-          <h4>{nweetObj.text}</h4>
+        <NweetBox>
+          <NweetText>{nweetObj.text}</NweetText>
           {nweetObj.attachmentUrl && (
-            <img src={nweetObj.attachmentUrl} width='50px' height='50px' />
+            <NweetImg src={nweetObj.attachmentUrl} width='100%' height='auto' />
           )}
           {isOwner && (
             <BtnWrap>
-              <button onClick={onDeleteClick}>Delete Nweet</button>
-              <button onClick={toggleEditing}>Edit Nweet</button>
+              <button onClick={onDeleteClick}>Delete</button>
+              <button onClick={toggleEditing}>Edit</button>
             </BtnWrap>
           )}
-        </>
+        </NweetBox>
       )}
-    </div>
+    </Wrap>
   );
 };
 
 export default Nweet;
-
+const Wrap = styled.div`
+  margin-bottom: 30px;
+  margin-top: 30px;
+`;
 const BtnWrap = styled.div`
+  display: flex;
+  align-content: center;
+  justify-content: flex-end;
+  gap: 10px;
   > button {
+    width: 80px;
     border: 0;
     outline: 0;
+    background-color: #9897ea;
+    color: #fff;
+    padding: 5px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    margin-top: 15px;
   }
+  > button:nth-child(1) {
+  }
+  > button:nth-child(2) {
+  }
+`;
+
+const NweetBox = styled.div`
+  padding: 30px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #fff;
+  border-radius: 15px;
+`;
+
+const NweetText = styled.p`
+  margin-bottom: 10px;
+`;
+
+const NweetImg = styled.img`
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+`;
+
+const EditForm = styled.form``;
+const EditInput = styled.input`
+  border: 0;
+  outline: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px dashed rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  color: #444;
+`;
+const EditBtn = styled.button`
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  display: block;
 `;

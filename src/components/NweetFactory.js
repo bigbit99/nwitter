@@ -74,14 +74,32 @@ const NweetFactory = ({ userObj }) => {
           placeholder="What's on your mind?"
           maxLength={120}
         />
-        <input type='file' accept='image/*' onChange={onFileChange} />
-        <input type='submit' value='Nweet' />
         {attachment && (
           <div>
-            <img src={attachment} width='100px' height='100px' />
-            <button onClick={onClearAttachment}>Clear</button>
+            <ClearBtn onClick={onClearAttachment}>Clear</ClearBtn>
+            <img
+              src={attachment}
+              width='100%'
+              max-width='500px'
+              height='atuo'
+            />
           </div>
         )}
+        <FormBtnBox>
+          <ImageBox>
+            <input
+              type='file'
+              accept='image/*'
+              id='ex_file'
+              onChange={onFileChange}
+            />
+
+            <label htmlFor='ex_file'>
+              <img src='../../images/photo_icon.png' />
+            </label>
+          </ImageBox>
+          <NweetInput type='submit' value='Nweet' />
+        </FormBtnBox>
       </Form>
     </div>
   );
@@ -99,5 +117,59 @@ const Form = styled.form`
     box-sizing: border-box;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid #fff;
   }
+`;
+
+const FormBtnBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+`;
+
+const ImageBox = styled.div`
+  > input:nth-child(1) {
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+  > label {
+    display: block;
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: transparent;
+    color: #fff;
+    padding: 5px 0;
+    border-radius: 30px;
+    line-height: -4px;
+    font-size: 0.9rem;
+  }
+`;
+
+const ClearBtn = styled.button`
+  border: 0;
+  outline: 0;
+  text-align: right;
+  background-color: transparent;
+`;
+
+const NweetInput = styled.input`
+  border: 0;
+  outline: 0;
+  width: 100px;
+  height: 30px;
+  margin-top: 18px;
+  text-align: center;
+  background-color: #9897ea;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  line-height: -4px;
+  font-size: 0.9rem;
 `;

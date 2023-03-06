@@ -85,11 +85,12 @@ export default AuthForm;
 const Form = styled.form``;
 
 const InputBox = styled.div`
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 20px;
   box-sizing: border-box;
   border-radius: 20px;
-  box-shadow: 10px 14px 54px rgba(0, 0, 0, 0.3);
+  border: 1px solid #fff;
+  box-shadow: 10px 14px 54px rgba(255, 255, 255, 0.3);
   > input {
     display: block;
     width: 100%;
@@ -105,7 +106,8 @@ const InputBox = styled.div`
 const AuthBtn = styled.input`
   border: 0;
   outline: 0;
-  background-color: #6653f5;
+  background-color: #9897ea;
+  border: 1px solid #fff;
   padding: 15px;
   border-radius: 30px;
   color: #fff;
@@ -116,6 +118,6 @@ const ToggleBtn = styled.span`
   display: block;
   text-align: right;
   margin-top: 10px;
-  color: #6653f5;
+  color: #706a9c;
   font-weight: bold;
 `;
