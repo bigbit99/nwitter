@@ -75,15 +75,15 @@ const NweetFactory = ({ userObj }) => {
           maxLength={120}
         />
         {attachment && (
-          <div>
-            <ClearBtn onClick={onClearAttachment}>Clear</ClearBtn>
-            <img
+          <AttachBox>
+            <ClearBtn onClick={onClearAttachment}>X</ClearBtn>
+            <AttachImg
               src={attachment}
               width='100%'
               max-width='500px'
               height='atuo'
             />
-          </div>
+          </AttachBox>
         )}
         <FormBtnBox>
           <ImageBox>
@@ -152,11 +152,35 @@ const ImageBox = styled.div`
   }
 `;
 
+const AttachBox = styled.div`
+  border-radius: 15px;
+  border: 1px solid #fff;
+  overflow: hidden;
+  position: relative;
+  margin-top: 15px;
+  box-sizing: border-box;
+`;
+
 const ClearBtn = styled.button`
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: block;
   border: 0;
   outline: 0;
-  text-align: right;
-  background-color: transparent;
+  text-align: center;
+  background-color: #9897ea;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 3px 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+`;
+
+const AttachImg = styled.img`
+  display: block;
+  width: 100%;
 `;
 
 const NweetInput = styled.input`

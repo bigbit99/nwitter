@@ -47,13 +47,11 @@ const Nweet = ({ nweetObj, isOwner }) => {
                   required
                   onChange={onChange}
                 />
-                <EditBtn type='submit'>
-                  <img src='../../images/refresh.png' />
-                </EditBtn>
+                <EditBtnWrap>
+                  <button type='submit'>Update</button>
+                  <button onClick={toggleEditing}>Cancle</button>
+                </EditBtnWrap>
               </EditForm>
-              <button onClick={toggleEditing}>
-                <img src='../../images/' />
-              </button>
             </>
           )}
         </>
@@ -131,11 +129,20 @@ const EditInput = styled.input`
   border-radius: 30px;
   color: #444;
 `;
-const EditBtn = styled.button`
-  border: 0;
-  outline: 0;
-  background: transparent;
-  width: 20px;
-  height: 20px;
-  display: block;
+const EditBtnWrap = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  > button {
+    width: 20%;
+    padding: 3px 0;
+    border-radius: 15px;
+    border: 0;
+    outline: 0;
+    background: #9897ea;
+    color: #fff;
+
+    border: 1px solid #fff;
+  }
 `;
