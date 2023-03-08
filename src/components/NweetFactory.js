@@ -95,7 +95,7 @@ const NweetFactory = ({ userObj }) => {
             />
 
             <label htmlFor='ex_file'>
-              <img src='../../images/photo_icon.png' />
+              <img src='./images/photo_icon.png' />
             </label>
           </ImageBox>
           <NweetInput type='submit' value='Nweet' />

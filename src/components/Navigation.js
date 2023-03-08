@@ -7,7 +7,7 @@ const Navigation = ({ userObj }) => (
     <NavList>
       <li>
         <Link to='/'>
-          <img src='../../images/home.png' />
+          <img src='./images/home.png' />
         </Link>
       </li>
       <li>
