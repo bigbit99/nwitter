@@ -6,7 +6,9 @@ const Navigation = ({ userObj }) => (
   <nav>
     <NavList>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to='/'>
+          <img src='../../images/home.png' />
+        </Link>
       </li>
       <li>
         <Link to='profiles'>
@@ -33,7 +35,18 @@ const NavList = styled.ul`
       color: #fff;
     }
   }
+  > li:nth-child(1) {
+    a {
+      img {
+        width: 20px;
+      }
+    }
+  }
   > li:nth-child(2) {
     text-align: right;
+    span {
+      color: #50598d;
+      font-weight: 500;
+    }
   }
 `;

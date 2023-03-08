@@ -76,4 +76,7 @@ const AppCont = styled.div`
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: border-box;
+  &::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+  }
 `;

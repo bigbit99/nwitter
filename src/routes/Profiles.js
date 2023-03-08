@@ -49,10 +49,11 @@ const Profiles = ({ refreshUser, userObj, newName }) => {
       });
       refreshUser();
     }
+    navigate('/');
   };
 
   return (
-    <>
+    <Wrap>
       <ProfileForm onSubmit={onSubmit}>
         <input
           type='text'
@@ -62,14 +63,20 @@ const Profiles = ({ refreshUser, userObj, newName }) => {
         />
         <input type='submit' value='Update' />
       </ProfileForm>
-      <button onClick={onLogOutClick}>Log Out</button>
-    </>
+      <LogoutBtn onClick={onLogOutClick}>Log Out</LogoutBtn>
+    </Wrap>
   );
 };
 
 export default Profiles;
+const Wrap = styled.div`
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 100px);
+`;
 
 const ProfileForm = styled.form`
+  margin-top: 20px;
   > input:nth-child(1) {
     background: rgba(255, 255, 255, 0.4);
     border: 1px solid #fff;
@@ -82,5 +89,24 @@ const ProfileForm = styled.form`
     outline: 0;
     border: 1px solid #fff;
     width: 100px;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    padding: 3px 0;
+    border-radius: 15px;
+    background-color: #9897ea;
+    color: #fff;
   }
+`;
+
+const LogoutBtn = styled.button`
+  position: absolute;
+  bottom: 0;
+  background-color: #9897ea;
+  border: 0;
+  outline: 0;
+  padding: 5px 0;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 15px;
 `;
