@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadString } from '@firebase/storage';
 import { addDoc, collection } from 'firebase/firestore';
 import styled from 'styled-components';
+import Navigation from 'components/Navigation';
 
 const NweetFactory = ({ userObj }) => {
   const [nweet, setNweet] = useState('');
@@ -66,6 +67,7 @@ const NweetFactory = ({ userObj }) => {
   const onClearAttachment = () => setAttachment('');
   return (
     <div>
+      <Navigation userObj={userObj} />
       <Form onSubmit={onSubmit}>
         <input
           value={nweet}
@@ -116,7 +118,7 @@ const Form = styled.form`
     padding: 10px;
     box-sizing: border-box;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #fff;
     border: 1px solid #fff;
   }
 `;

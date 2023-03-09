@@ -18,12 +18,31 @@ const Auth = () => {
 
   return (
     <Wrap>
-      <AuthForm />
-      <GoogleAuth>
-        <button onClick={onSocialClick} name='google'>
-          <img src='../../images/google.png' />
-        </button>
-      </GoogleAuth>
+      <WrapCont>
+        <div>
+          <img src={process.env.PUBLIC_URL + '/images/paper-plane.png'} />
+          <p>Create an Account</p>
+          <AuthForm />
+          <GoogleAuth>
+            <button onClick={onSocialClick} name='google'>
+              <img src={process.env.PUBLIC_URL + '/images/google-plus.png'} />
+            </button>
+          </GoogleAuth>
+        </div>
+        <div>
+          <ImgBox>
+            <img src={process.env.PUBLIC_URL + '/images/mainmood.png'} />
+            <dl>
+              <dt>어서오세요.</dt>
+              <dd>
+                더 많은 기능을 즐겨보세요.
+                <br />
+                다양한 사람들과 즐거움이 기다리고 있습니다.
+              </dd>
+            </dl>
+          </ImgBox>
+        </div>
+      </WrapCont>
     </Wrap>
   );
 };
@@ -31,15 +50,70 @@ export default Auth;
 
 const Wrap = styled.div`
   width: 100%;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translateX(-50%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
+const WrapCont = styled.div`
+  width: 100%;
+  max-width: 90%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 15px;
+  border-radius: 20px;
+  > div:nth-child(1) {
+    width: 45%;
+    text-align: center;
+    box-sizing: border-box;
+    > img {
+      width: 30px;
+      display: block;
+      margin: 0 auto;
+    }
+    > p {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+  }
+  > div:nth-child(2) {
+    width: 45%;
+    padding: 40px 0;
+  }
+`;
+
+const ImgBox = styled.div`
+  border-radius: 15px;
+  overflow: hidden;
+  max-width: 500px;
+  position: relative;
+  margin: 0 auto;
+  > img {
+    width: 100%;
+    display: block;
+  }
+  > dl {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    dt {
+      font-size: 1.4em;
+      font-weight: 600;
+    }
+    dd {
+      margin-top: 5px;
+      font-weight: 300;
+    }
+  }
+`;
 const GoogleAuth = styled.div`
   margin-top: 40px;
   > button {
@@ -51,8 +125,8 @@ const GoogleAuth = styled.div`
     height: 40px;
     margin: 0 auto;
     border-radius: 100%;
-    background-color: #9897ea;
-    border: 1px solid #fff;
+    background-color: #fff;
+    border: 1px solid #bc413b;
     position: relative;
     > img {
       width: 100%;

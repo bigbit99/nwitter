@@ -40,19 +40,17 @@ function App() {
 
   return (
     <WrapApp className={isLoggedIn ? 'is-allback' : 'rectback'}>
-      <AppCont>
-        {init ? (
-          <AppRouter
-            refreshUser={refreshUser}
-            isLoggedIn={isLoggedIn}
-            userObj={userObj}
-            newName={newName}
-          />
-        ) : (
-          'Initializing...'
-        )}
-        {/* <footer>&copy; {new Date().getFullYear()} Nwitter</footer> */}
-      </AppCont>
+      {init ? (
+        <AppRouter
+          refreshUser={refreshUser}
+          isLoggedIn={isLoggedIn}
+          userObj={userObj}
+          newName={newName}
+        />
+      ) : (
+        'Initializing...'
+      )}
+      {/* {<footer>&copy; {new Date().getFullYear()} Nwitter</footer>} */}
     </WrapApp>
   );
 }
@@ -63,20 +61,8 @@ const WrapApp = styled.div`
   min-height: 100vh;
   width: 100%;
   overflow: hidden;
+  box-sizing: border-box;
   margin: 0 auto;
   position: relative;
   background-image: linear-gradient(to top, #fbc7d4, #c59de6, #9897f0);
-`;
-
-const AppCont = styled.div`
-  width: 100%;
-  max-width: 600px;
-  height: 100vh;
-  overflow: scroll;
-  margin: 0 auto;
-  padding: 0 15px;
-  box-sizing: border-box;
-  &::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리, 오페라, 엣지 */
-  }
 `;

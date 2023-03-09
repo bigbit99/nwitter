@@ -49,19 +49,21 @@ const AuthForm = () => {
     <>
       <Form onSubmit={onSubmit}>
         <InputBox>
-          <input
+          <label>E-mail</label>
+          <EmailInput
             onChange={onChange}
             name='email'
             type='email'
-            placeholder='Email'
+            placeholder='email'
             required
             value={email}
           />
+          <label>Password</label>
           <input
             onChange={onChange}
             name='password'
             type='password'
-            placeholder='Password'
+            placeholder='password'
             required
             value={password}
           />
@@ -69,37 +71,47 @@ const AuthForm = () => {
         <AuthBtn
           className='authbtn'
           type='submit'
-          value={newAccount ? 'Create Account' : 'Log In'}
+          value={newAccount ? 'Sign In' : 'Log In'}
         />
         {error}
+        <ToggleBtn onClick={toggleAccount}>
+          {newAccount ? 'Log in' : 'Sign In'}
+        </ToggleBtn>
       </Form>
-      <ToggleBtn onClick={toggleAccount}>
-        {newAccount ? 'Log in' : 'Create Account'}
-      </ToggleBtn>
     </>
   );
 };
 
 export default AuthForm;
 
-const Form = styled.form``;
+const Form = styled.form`
+  margin-top: 30px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+`;
 
 const InputBox = styled.div`
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  border: 1px solid #fff;
-  box-shadow: 10px 14px 54px rgba(255, 255, 255, 0.3);
+  > label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
   > input {
     display: block;
     width: 100%;
     padding: 10px 0 10px 10px;
     border: 0;
     outline: 0;
-    background-color: transparent;
-    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: 1px solid #eee;
   }
+`;
+
+const EmailInput = styled.input`
   margin-bottom: 30px;
 `;
 
@@ -107,17 +119,23 @@ const AuthBtn = styled.input`
   border: 0;
   outline: 0;
   background-color: #9897ea;
-  border: 1px solid #fff;
-  padding: 15px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  padding: 5px;
   border-radius: 30px;
   color: #fff;
-  font-size: 1.1em;
+  font-size: 1em;
+  width: 100px;
+  margin-left: auto;
+  display: block;
 `;
 
 const ToggleBtn = styled.span`
   display: block;
-  text-align: right;
   margin-top: 10px;
   color: #706a9c;
   font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 3px;
 `;

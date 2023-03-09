@@ -74,10 +74,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
 };
 
 export default Nweet;
-const Wrap = styled.div`
-  margin-bottom: 30px;
-  margin-top: 30px;
-`;
+const Wrap = styled.div``;
 const BtnWrap = styled.div`
   display: flex;
   align-content: center;
@@ -104,9 +101,10 @@ const BtnWrap = styled.div`
 const NweetBox = styled.div`
   padding: 30px;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.4);
+  background: #fff;
   border: 1px solid #fff;
   border-radius: 15px;
+  margin-bottom: 10px;
 `;
 
 const NweetText = styled.p`
