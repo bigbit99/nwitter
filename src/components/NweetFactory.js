@@ -31,6 +31,7 @@ const NweetFactory = ({ userObj }) => {
     await addDoc(collection(dbService, 'nweets'), nweetObj);
     setNweet('');
     setAttachment('');
+
     // try {
     //   const doc,Ref = await addDoc(collection(dbService, 'nweets'), {
     //     text: nweet,
@@ -40,7 +41,7 @@ const NweetFactory = ({ userObj }) => {
     // } catch (e) {
     //   console.error('Error adding document:', e);
     // }
-    // setNweet('');
+    //setNweet('');
   };
 
   const onChange = (event) => {

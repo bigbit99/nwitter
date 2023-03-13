@@ -4,7 +4,6 @@ import { dbService } from 'fbase';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import Nweet from 'components/Nweet';
 import NweetFactory from 'components/NweetFactory';
-import Navigation from 'components/Navigation';
 
 const Home = ({ userObj, newName, isLoggedIn }) => {
   const [nweets, setNweets] = useState([]);
